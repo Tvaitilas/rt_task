@@ -1,21 +1,22 @@
-<p>Duomenys naudojami is:
+<div class="container">
+  <p>Duomenys naudojami is:
+    <a href="https://restcountries.com/v2/all?fields=name,region,area" target="_blank">Restcountries.com</a>
+  </p>
 
-  <a href="https://restcountries.com/v2/all?fields=name,region,area" target="_blank">Restcountries.com</a>
-</p>
+  <h1>Countries:</h1>
 
-<h1>Countries:</h1>
-
-<div class="card" *ngFor="let country of countries">
-  <div>
-    {{ country.name}}
+  <div class="card" *ngFor="let country of countries">
+    <div>
+      <p>Country name: <strong>{{ country.name}}</strong></p>
+    </div>
+    <div>
+      <p>
+        World region: <strong>{{ country.region}}</strong>
+      </p>
+    </div>
+    <div>
+      <p>Area size: <strong>{{ country.area}}</strong></p>
+      <hr>
+    </div>
   </div>
-  <div>
-    {{ country.region}}
-  </div>
-  <div>
-    {{ country.area}}
-    <hr>
-  </div>
-
-
 </div>

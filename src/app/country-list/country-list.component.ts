@@ -11,7 +11,13 @@ export class CountryListComponent implements OnInit {
   constructor(private _countryService: CountryService) {}
 
   ngOnInit(): void {
-    this.countries = this._countryService.getCountries();
+    // this._countryService
+    //   .getCountries()
+    //   .subscribe((data) => (this.countries = data));
+
+    this._countryService
+      .getCountries()
+      .subscribe((data) => (this.countries = data));
 
     console.log(this.countries);
   }

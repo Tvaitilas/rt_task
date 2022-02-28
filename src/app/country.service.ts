@@ -1,25 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CountryService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getCountries() {
-    return [
-      {
-        name: 'Afghanistan',
-        region: 'Asia',
-        area: 652230.0,
-        independent: false,
-      },
-      {
-        name: 'Åland Islands',
-        region: 'Europe',
-        area: 1580.0,
-        independent: false,
-      },
-    ];
+    let url = 'https://restcountries.com/v2/all?fields=name,region,area';
+    let data = this.http.get(url);
+    return data;
   }
 }
