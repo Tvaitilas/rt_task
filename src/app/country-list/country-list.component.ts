@@ -14,10 +14,6 @@ export class CountryListComponent implements OnInit {
   constructor(private _countryService: CountryService) {}
 
   ngOnInit(): void {
-    // this._countryService
-    //   .getCountries()
-    //   .subscribe((data) => (this.countries = data));
-
     this._countryService
       .getCountries()
       .subscribe((response) => (this.countries = response));
@@ -45,11 +41,4 @@ export class CountryListComponent implements OnInit {
 
     console.log(keyFirst);
   }
-
-  // keySecond: string = 'area';
-  // rusiuoti: boolean = false;
-  // onClickMe(keySecond) {
-  //   if (keySecond <= 56300) this.keySecond = keySecond;
-  //   this.rusiuoti = !this.rusiuoti;
-  // }
 }
