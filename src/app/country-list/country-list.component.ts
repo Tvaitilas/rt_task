@@ -25,7 +25,7 @@ export class CountryListComponent implements OnInit {
     console.log(this.countries);
   }
 
-  Search() {
+  searchByName() {
     if (this.region == '') {
       this.ngOnInit();
     } else {
@@ -46,10 +46,10 @@ export class CountryListComponent implements OnInit {
     console.log(keyFirst);
   }
 
-  keySecond: string = 'area';
-  rusiuoti: boolean = false;
-  onClickMe(keySecond) {
-    if (keySecond <= 56300) this.keySecond = keySecond;
-    this.rusiuoti = !this.rusiuoti;
-  }
+  // keySecond: string = 'area';
+  // rusiuoti: boolean = false;
+  // onClickMe(keySecond) {
+  //   if (keySecond <= 56300) this.keySecond = keySecond;
+  //   this.rusiuoti = !this.rusiuoti;
+  // }
 }

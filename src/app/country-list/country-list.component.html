@@ -1,34 +1,43 @@
-<div class="container">
-  <p>Duomenys naudojami is:
-    <a href="https://restcountries.com/v2/all?fields=name,region,area" target="_blank">Restcountries.com</a>
-  </p>
-
-  <h1>Countries</h1>
-
-  <div class="navbar">
-    <label for="region">Region name: </label>
-    <input class="form-control" type="text" name="region" [(ngModel)]="region" (ngModelChange)="Search()"
-      placeholder="Enter Region name to search">
-  </div>
-
-  <button type="button" (click)="sort('name')">Sort countries&nbsp;<i class="fa fa-sort"></i></button>
-  <button type="button" (click)="onClickMe('area')">Sort smaller&nbsp;<i class="fa fa-sort"></i></button>
-
-  <div class="card"
-    *ngFor="let country of countries | orderBy: keyFirst: reverse | orderBy: keySecond: rusiuoti | paginate: {itemsPerPage:5, currentPage:p};">
-    <div>
-      <p>Country name: <strong>{{country.name}}</strong></p>
-    </div>
-    <div>
-      <p>
-        World region: <strong>{{country.region}}</strong>
-      </p>
-    </div>
-    <div>
-      <p>Area size: <strong>{{country.area}} km<sup>2</sup></strong></p>
-      <hr>
+<p>Data from:
+  <a href="https://restcountries.com/v2/all?fields=name,region,area" target="_blank">Restcountries.com</a>
+</p>
+<h3>Countries</h3>
+<div class="row">
+  <div class="col-md-7">
+    <div class="navbar mb-3">
+      <label for="region">Region name: </label>
+      <input class="form-control" type="text" name="region" [(ngModel)]="region" (ngModelChange)="searchByName()"
+        placeholder="Enter Region name to search">
     </div>
   </div>
-
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
+
+<button class="btn btn-primary" type="button" (click)="sort('name')">Sort countries by name&nbsp;<i
+    class="fa fa-sort ps-3"></i></button>
+<!-- <button type="button" (click)="onClickMe('area')">Sort smaller&nbsp;<i class="fa fa-sort"></i></button> -->
+
+<div class="row">
+  <div class="col-md-7 mb-3"
+    *ngFor=" let country of countries | orderBy: keyFirst: reverse | paginate: {itemsPerPage:5, currentPage:p};">
+    <!-- *ngFor="let country of countries | orderBy: keyFirst: reverse | orderBy: keySecond: rusiuoti | paginate: {itemsPerPage:5, currentPage:p};"> -->
+    <div class="card">
+      <div class="card-body">
+        <div>
+          <p>Country name: <strong>{{country.name}}</strong></p>
+        </div>
+        <div>
+          <p>
+            Region: <strong>{{country.region}}</strong>
+          </p>
+        </div>
+        <div>
+          <p>Area size: <strong>{{country.area}} km<sup>2</sup></strong></p>
+          <hr>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
