@@ -8,6 +8,9 @@ import { CountryService } from '../country.service';
 })
 export class CountryListComponent implements OnInit {
   public countries: any = [];
+  region: any;
+  // area: number = 65300;
+  p: number = 1;
   constructor(private _countryService: CountryService) {}
 
   ngOnInit(): void {
@@ -17,8 +20,36 @@ export class CountryListComponent implements OnInit {
 
     this._countryService
       .getCountries()
-      .subscribe((data) => (this.countries = data));
+      .subscribe((response) => (this.countries = response));
 
     console.log(this.countries);
+  }
+
+  Search() {
+    if (this.region == '') {
+      this.ngOnInit();
+    } else {
+      this.countries = this.countries.filter((res: { region: string }) => {
+        return res.region
+          .toLocaleLowerCase()
+          .match(this.region.toLocaleLowerCase());
+      });
+    }
+  }
+
+  keyFirst: string = 'name';
+  reverse: boolean = false;
+  sort(keyFirst) {
+    this.keyFirst = keyFirst;
+    this.reverse = !this.reverse;
+
+    console.log(keyFirst);
+  }
+
+  keySecond: string = 'area';
+  rusiuoti: boolean = false;
+  onClickMe(keySecond) {
+    if (keySecond <= 56300) this.keySecond = keySecond;
+    this.rusiuoti = !this.rusiuoti;
   }
 }

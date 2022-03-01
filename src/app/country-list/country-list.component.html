@@ -3,20 +3,32 @@
     <a href="https://restcountries.com/v2/all?fields=name,region,area" target="_blank">Restcountries.com</a>
   </p>
 
-  <h1>Countries:</h1>
+  <h1>Countries</h1>
 
-  <div class="card" *ngFor="let country of countries">
+  <div class="navbar">
+    <label for="region">Region name: </label>
+    <input class="form-control" type="text" name="region" [(ngModel)]="region" (ngModelChange)="Search()"
+      placeholder="Enter Region name to search">
+  </div>
+
+  <button type="button" (click)="sort('name')">Sort countries&nbsp;<i class="fa fa-sort"></i></button>
+  <button type="button" (click)="onClickMe('area')">Sort smaller&nbsp;<i class="fa fa-sort"></i></button>
+
+  <div class="card"
+    *ngFor="let country of countries | orderBy: keyFirst: reverse | orderBy: keySecond: rusiuoti | paginate: {itemsPerPage:5, currentPage:p};">
     <div>
-      <p>Country name: <strong>{{ country.name}}</strong></p>
+      <p>Country name: <strong>{{country.name}}</strong></p>
     </div>
     <div>
       <p>
-        World region: <strong>{{ country.region}}</strong>
+        World region: <strong>{{country.region}}</strong>
       </p>
     </div>
     <div>
-      <p>Area size: <strong>{{ country.area}}</strong></p>
+      <p>Area size: <strong>{{country.area}} km<sup>2</sup></strong></p>
       <hr>
     </div>
   </div>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
